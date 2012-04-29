@@ -106,8 +106,6 @@ public class TemplateBuildServlet extends HttpServlet {
      */
     protected void execute(HttpServletRequest request, HttpServletResponse response) {
         long startTime = LogOutputUtil.outputStartTime(logUtil, LogLevel.DEBUG, "Start TemplateBuildServlet Method");
-        // 出力するレスポンスの文字コードを設定 テンプレートの文字コードと合わせる
-        response.setCharacterEncoding(templateUtil.getHtmlEncode());
         String result = templateUtil.buildHtml(request, getTemplateName(request));
         PrintWriter out = null;
         try {

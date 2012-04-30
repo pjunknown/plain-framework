@@ -23,6 +23,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.thymeleaf.exceptions.TemplateProcessingException;
+
 import jp.techie.plain.framework.util.LogLevel;
 import jp.techie.plain.framework.util.LogOutputUtil;
 import jp.techie.plain.framework.util.LogUtil;
@@ -106,7 +108,13 @@ public class TemplateBuildServlet extends HttpServlet {
      */
     protected void execute(HttpServletRequest request, HttpServletResponse response) {
         long startTime = LogOutputUtil.outputStartTime(logUtil, LogLevel.DEBUG, "Start TemplateBuildServlet Method");
-        String result = templateUtil.buildHtml(request, getTemplateName(request));
+        String result ="";
+        try {
+            result = templateUtil.buildHtml(request, getTemplateName(request));
+        } catch (TemplateProcessingException e) {
+            logUtil.fatal("execute:html OutPut Exception",e);
+            // TODO エラーページへ遷移する処理を記述する
+        }
         PrintWriter out = null;
         try {
             logUtil.debug("execute:start html print");

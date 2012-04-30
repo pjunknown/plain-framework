@@ -40,7 +40,7 @@ public class TemplateUtil {
     /**
      * TemplateEngine
      */
-    private static TemplateEngine engine = new TemplateEngine();
+    private static TemplateEngine templateEngine = new TemplateEngine();
     
     /**
      * HTMLのエンコード
@@ -54,7 +54,7 @@ public class TemplateUtil {
     public String buildHtml(HttpServletRequest request,String templateName){
         WebContext ctx = new WebContext(request, request.getServletContext(), request.getLocale());
         logUtil.debug("execute:templateName:" + templateName);
-        return engine.process(templateName, ctx);
+        return templateEngine.process(templateName, ctx);
     }
     
     @PostConstruct
@@ -65,7 +65,7 @@ public class TemplateUtil {
         servletContextTemplateResolver.setCacheable(true);
         servletContextTemplateResolver.setCacheTTLMs(60000L);
         servletContextTemplateResolver.setCharacterEncoding(htmlEncode);
-        engine.setTemplateResolver(servletContextTemplateResolver);
+        templateEngine.setTemplateResolver(servletContextTemplateResolver);
         logUtil.debug("init:end template engine initialized.");
     }
 }

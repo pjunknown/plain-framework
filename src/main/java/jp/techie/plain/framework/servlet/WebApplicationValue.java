@@ -137,7 +137,9 @@ public class WebApplicationValue implements Serializable {
      */
     public void putApplicationAttribute(String attributeName, Object attribute) {
         application.setAttribute(attributeName, attribute);
-        logUtil.trace("ApplicationValue put:attributeName:" + attributeName + " :" + attribute.toString());
+        if (attribute != null) {
+            logUtil.trace("ApplicationValue put:attributeName:" + attributeName + " :" + attribute.toString());
+        }
     }
 
     /**
@@ -150,7 +152,9 @@ public class WebApplicationValue implements Serializable {
     @SuppressWarnings("unchecked")
     public <T> T getApplicationAttribute(String attributeName) {
         Object attribute = application.getAttribute(attributeName);
-        logUtil.trace("ApplicationValue get:attributeName:" + attributeName + " :" + attribute.toString());
+        if (attribute != null) {
+            logUtil.trace("ApplicationValue get:attributeName:" + attributeName + " :" + attribute.toString());
+        }
         return (T) attribute;
     }
 
@@ -182,12 +186,15 @@ public class WebApplicationValue implements Serializable {
      * @return パタメータ複数値格納リスト
      */
     public List<String> getRequestParameters(String key) {
+        List<String> requestPrameters = null;
         String[] requestPrameterStrings = request.getParameterValues(key);
-        List<String> requestPrameters = Arrays.asList(requestPrameterStrings);
-        if (logUtil.isTraceEnabled()) {
-            for (String requestPrameter : requestPrameters) {
-                logUtil.trace("request parameters(" + key + "):");
-                logUtil.trace("    value:" + requestPrameter);
+        if (requestPrameterStrings != null) {
+            requestPrameters = Arrays.asList(requestPrameterStrings);
+            if (logUtil.isTraceEnabled()) {
+                for (String requestPrameter : requestPrameters) {
+                    logUtil.trace("request parameters(" + key + "):");
+                    logUtil.trace("    value:" + requestPrameter);
+                }
             }
         }
         return requestPrameters;
@@ -202,8 +209,10 @@ public class WebApplicationValue implements Serializable {
      */
     public String getRequestParameter(String key) {
         String requestPrameter = request.getParameter(key);
-        if (logUtil.isTraceEnabled()) {
-            logUtil.trace("request parameter(" + key + "):" + requestPrameter);
+        if (requestPrameter != null) {
+            if (logUtil.isTraceEnabled()) {
+                logUtil.trace("request parameter(" + key + "):" + requestPrameter);
+            }
         }
         return requestPrameter;
     }
@@ -218,7 +227,9 @@ public class WebApplicationValue implements Serializable {
      */
     public void putRequestAttribute(String attributeName, Object attribute) {
         request.setAttribute(attributeName, attribute);
-        logUtil.trace("RequestValue put:attributeName:" + attributeName + " :" + attribute.toString());
+        if (attribute != null) {
+            logUtil.trace("RequestValue put:attributeName:" + attributeName + " :" + attribute.toString());
+        }
     }
 
     /**
@@ -231,7 +242,9 @@ public class WebApplicationValue implements Serializable {
     @SuppressWarnings("unchecked")
     public <T> T getRequestAttribute(String attributeName) {
         Object attribute = request.getAttribute(attributeName);
-        logUtil.trace("RequestValue get:attributeName:" + attributeName + " :" + attribute.toString());
+        if (attribute != null) {
+            logUtil.trace("RequestValue get:attributeName:" + attributeName + " :" + attribute.toString());
+        }
         return (T) attribute;
     }
 
@@ -245,7 +258,9 @@ public class WebApplicationValue implements Serializable {
      */
     public void putSessionAttribute(String attributeName, Object attribute) {
         session.setAttribute(attributeName, attribute);
-        logUtil.trace("SessionValue put:attributeName:" + attributeName + " :" + attribute.toString());
+        if (attribute != null) {
+            logUtil.trace("SessionValue put:attributeName:" + attributeName + " :" + attribute.toString());
+        }
     }
 
     /**
@@ -258,7 +273,9 @@ public class WebApplicationValue implements Serializable {
     @SuppressWarnings("unchecked")
     public <T> T getSessionAttribute(String attributeName) {
         Object attribute = session.getAttribute(attributeName);
-        logUtil.trace("SessionValue get:attributeName:" + attributeName + " :" + attribute.toString());
+        if (attribute != null) {
+            logUtil.trace("SessionValue get:attributeName:" + attributeName + " :" + attribute.toString());
+        }
         return (T) attribute;
     }
 

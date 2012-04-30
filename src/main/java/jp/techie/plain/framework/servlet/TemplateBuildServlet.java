@@ -113,7 +113,7 @@ public class TemplateBuildServlet extends HttpServlet {
             result = templateUtil.buildHtml(request, getTemplateName(request));
         } catch (TemplateProcessingException e) {
             logUtil.fatal("execute:html OutPut Exception",e);
-            // TODO エラーページへ遷移する処理を記述する
+            // TODO テンプレート生成でエラーになった時にエラーページへ遷移する処理を記述する
         }
         PrintWriter out = null;
         try {

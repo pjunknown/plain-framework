@@ -47,9 +47,6 @@ public class OutputHtmlRestActionImpl implements OutputHtmlRestAction {
      */
     @Override
     public String getHtml(HttpServletRequest request, HttpServletResponse response, String templateName) {
-        // 出力するレスポンスの文字コードを設定 テンプレートの文字コードと合わせる
-        response.setCharacterEncoding(templateUtil.getHtmlEncode());
-
         // htmlを生成する
         logUtil.debug("execute:templateName:" + templateName);
         String result = templateUtil.buildHtml(request, templateName);

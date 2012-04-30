@@ -32,6 +32,6 @@ public class MessageUtilTest {
      */
     @Test
     public void testGetMessage(){
-        assertEquals(MessageUtil.getMessage("controlBeanErrorMessage"),"500 internal error.");
+        assertEquals(MessageUtil.getMessage("actionServletTimeoutValueErrorMessage"),"Missing ActionServlet timeout.");
     }
 }

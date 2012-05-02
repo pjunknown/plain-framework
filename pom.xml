@@ -11,6 +11,23 @@
 
 	<!-- More Project Information -->
 	<name>plain-framework</name>
+	<distributionManagement>
+		<repository>
+			<id>local-repository</id>
+			<name>Local Repository</name>
+			<url>file:////var/www/html/maven2/</url>
+		</repository>
+		<snapshotRepository>
+			<uniqueVersion>false</uniqueVersion>
+			<id>local-snapshot-repository</id>
+			<name>Local Repository Snapshot</name>
+			<url>file:///var/www/html/maven2-snapshot/</url>
+		</snapshotRepository>
+		<site>
+			<id>Plain Project Site</id>
+			<url>file:////var/www/html/site</url>
+		</site>
+	</distributionManagement>
 
 	<!-- Build Settings -->
 	<build>
@@ -64,9 +81,13 @@
 					<target>1.6</target>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-deploy-plugin</artifactId>
+				<version>2.7</version>
+			</plugin>
 		</plugins>
 	</build>
-
 	<!-- Dependency Settings -->
 	<dependencies>
 		<dependency>
